@@ -12,7 +12,6 @@ import auction.domain.Category;
 import auction.domain.Item;
 import auction.domain.User;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
 
@@ -30,12 +29,11 @@ public class AuctionMgrTest {
     }
 
     @After
-    public void cleanUp() throws SQLException{
+    public void cleanUp() throws SQLException {
         DatabaseCleaner dbc = new DatabaseCleaner(registrationMgr.manager());
         dbc.clean();
     }
-    
-    
+
     @Test
     public void getItem() {
 

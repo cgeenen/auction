@@ -1,10 +1,12 @@
 package auction.domain;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import nl.fontys.util.Money;
 
 @Entity
@@ -13,6 +15,7 @@ public class Item implements Comparable, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
     private User seller;
     private Category category;
     private String description;
@@ -25,6 +28,7 @@ public class Item implements Comparable, Serializable {
         this.seller = seller;
         this.category = category;
         this.description = description;
+        this.seller.addItem(this);
     }
 
     public Long getId() {
@@ -55,18 +59,45 @@ public class Item implements Comparable, Serializable {
         return highest;
     }
 
+    @Override
     public int compareTo(Object arg0) {
         //TODO
         return -1;
     }
 
-    public boolean equals(Object o) {
-        //TODO
-        return false;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Item other = (Item) obj;
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.seller, other.seller)) {
+            return false;
+        }
+        if (!Objects.equals(this.category, other.category)) {
+            return false;
+        }
+        if (!Objects.equals(this.highest, other.highest)) {
+            return false;
+        }
+        return true;
     }
 
+    @Override
     public int hashCode() {
-        //TODO
-        return 0;
+        return this.hashCode();
     }
+
 }

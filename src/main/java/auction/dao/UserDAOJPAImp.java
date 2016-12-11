@@ -8,7 +8,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-
 public class UserDAOJPAImp implements UserDAO {
 
     private final EntityManager em;
@@ -29,7 +28,6 @@ public class UserDAOJPAImp implements UserDAO {
         return em;
     }
 
-    
     @Override
     public void create(User user) {
         em.getTransaction().begin();
@@ -44,7 +42,6 @@ public class UserDAOJPAImp implements UserDAO {
         em.getTransaction().commit();
     }
 
-
     @Override
     public List<User> findAll() {
         Query query = em.createQuery("SELECT u FROM User u");
@@ -56,8 +53,8 @@ public class UserDAOJPAImp implements UserDAO {
         Query q = em.createNamedQuery("User.email", User.class);
         q.setParameter("email", email);
         try {
-        return (User) q.getSingleResult();
-        } catch (NoResultException e){
+            return (User) q.getSingleResult();
+        } catch (NoResultException e) {
             return null;
         }
     }
