@@ -12,6 +12,8 @@ import org.junit.Test;
 import auction.domain.Category;
 import auction.domain.Item;
 import auction.domain.User;
+import java.sql.SQLException;
+import org.junit.After;
 
 public class SellerMgrTest {
 
@@ -26,6 +28,12 @@ public class SellerMgrTest {
         sellerMgr = new SellerMgr();
     }
 
+    @After
+    public void cleanUp() throws SQLException{
+        DatabaseCleaner dbc = new DatabaseCleaner(registrationMgr.manager());
+        dbc.clean();
+    }
+    
     /**
      * Test of offerItem method, of class SellerMgr.
      */

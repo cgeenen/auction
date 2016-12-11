@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import auction.domain.User;
+import java.sql.SQLException;
+import org.junit.After;
 
 public class RegistrationMgrTest {
 
@@ -16,6 +18,12 @@ public class RegistrationMgrTest {
     @Before
     public void setUp() throws Exception {
         registrationMgr = new RegistrationMgr();
+    }
+    
+    @After
+    public void cleanUp() throws SQLException{
+        DatabaseCleaner dbc = new DatabaseCleaner(registrationMgr.manager());
+        dbc.clean();
     }
 
     @Test
