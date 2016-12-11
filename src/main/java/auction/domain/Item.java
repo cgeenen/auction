@@ -1,14 +1,25 @@
 package auction.domain;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import nl.fontys.util.Money;
 
-public class Item implements Comparable {
+@Entity
+public class Item implements Comparable, Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private User seller;
     private Category category;
     private String description;
     private Bid highest;
+
+    public Item() {
+    }
 
     public Item(User seller, Category category, String description) {
         this.seller = seller;
