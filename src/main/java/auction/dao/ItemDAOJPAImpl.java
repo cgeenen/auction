@@ -65,13 +65,13 @@ public class ItemDAOJPAImpl implements ItemDAO {
 
     @Override
     public Item find(Long id) {
-        Query query = em.createQuery("SELECT * FROM Item i where id = " + id);
+        Query query = em.createQuery("SELECT * FROM Item i where i.id = " + id);
         return (Item) query.getResultList();
     }
 
     @Override
     public List<Item> findByDescription(String description) {
-        Query query = em.createQuery("SELECT * FROM Item i WHERE description = " + description);
+        Query query = em.createQuery("SELECT * FROM Item i WHERE i.description = " + description);
         return (List<Item>) query.getResultList();
     }
 }

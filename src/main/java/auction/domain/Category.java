@@ -1,8 +1,15 @@
 package auction.domain;
 
-public class Category {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Category implements Serializable {
 
     private String description;
+    @Id
+    private Long id;
 
     private Category() {
         description = "undefined";
@@ -14,5 +21,13 @@ public class Category {
 
     public String getDiscription() {
         return description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

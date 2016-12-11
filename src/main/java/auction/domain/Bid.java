@@ -1,13 +1,22 @@
 package auction.domain;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import nl.fontys.util.FontysTime;
 import nl.fontys.util.Money;
 
-public class Bid {
+@Entity
+public class Bid implements Serializable {
 
     private FontysTime time;
     private User buyer;
     private Money amount;
+    @Id
+    private Long id;
+
+    public Bid() {
+    }
 
     public Bid(User buyer, Money amount) {
         //TODO
@@ -25,5 +34,13 @@ public class Bid {
 
     public Money getAmount() {
         return amount;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
