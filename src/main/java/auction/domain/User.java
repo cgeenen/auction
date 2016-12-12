@@ -45,6 +45,12 @@ public class User {
         }
     }
 
+    public void addItemToUser(Item item) {
+        if (item != null && !item.getDescription().isEmpty()) {
+            addItem(item);
+        }
+    }
+
     public Iterator<Item> getOfferedItems() {
         return offeredItems.iterator();
     }
