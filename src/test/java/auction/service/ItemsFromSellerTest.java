@@ -44,13 +44,14 @@ public class ItemsFromSellerTest {
         Item item1 = sellerMgr.offerItem(user1, cat, omsch1);
 
         // test number of items belonging to user1
-        assertEquals(0, user1.numberOfOfferdItems());
         assertEquals(1, user1.numberOfOfferdItems());
 
         /*
          *  expected: which one of te above two assertions do you expect to be true?
          *  QUESTION:
          *    Explain the result in terms of entity manager and persistance context.
+        EXPLAINATION:
+            Op het moment dat een item geoffered wordt, dient deze ook toegevoegd te zijn aan het user object
          */
         assertEquals(1, item1.getSeller().numberOfOfferdItems());
 
@@ -64,14 +65,14 @@ public class ItemsFromSellerTest {
 
         User userWithItem = item2.getSeller();
         assertEquals(2, userWithItem.numberOfOfferdItems());
-        assertEquals(3, userWithItem.numberOfOfferdItems());
         /*
          *  expected: which one of te above two assertions do you expect to be true?
          *  QUESTION:
          *    Explain the result in terms of entity manager and persistance context.
+        Explanation:
+            Er zijn maar 2 items toegevoegd aan user2
          */
 
-        assertNotSame(user3, userWithItem);
         assertEquals(user3, userWithItem);
 
     }
