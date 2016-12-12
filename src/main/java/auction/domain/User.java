@@ -3,6 +3,7 @@ package auction.domain;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "Item")
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.PERSIST)
     private Set<Item> offeredItems;
     private String email;
 

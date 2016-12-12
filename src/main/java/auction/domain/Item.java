@@ -2,11 +2,13 @@ package auction.domain;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import nl.fontys.util.Money;
 
 @Entity
@@ -19,6 +21,7 @@ public class Item implements Comparable, Serializable {
     private User seller;
     private Category category;
     private String description;
+    @OneToOne(mappedBy = "item", cascade = CascadeType.PERSIST)
     private Bid highest;
 
     public Item() {
@@ -97,7 +100,13 @@ public class Item implements Comparable, Serializable {
 
     @Override
     public int hashCode() {
-        return this.hashCode();
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.seller);
+        hash = 67 * hash + Objects.hashCode(this.category);
+        hash = 67 * hash + Objects.hashCode(this.description);
+        hash = 67 * hash + Objects.hashCode(this.highest);
+        return hash;
     }
 
 }
