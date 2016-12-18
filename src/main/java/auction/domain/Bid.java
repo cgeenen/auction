@@ -1,10 +1,10 @@
 package auction.domain;
 
-import com.sun.istack.internal.NotNull;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import nl.fontys.util.FontysTime;
 import nl.fontys.util.Money;
@@ -17,7 +17,7 @@ public class Bid implements Serializable {
     private User buyer;
     private Money amount;
     @OneToOne
-    @NotNull
+    @JoinColumn(nullable=false)
     private Item item;
     @Id
     @GeneratedValue
